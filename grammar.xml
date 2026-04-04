@@ -38,14 +38,24 @@ title="Easy editing stylesheet" ?>
                 If the first word is a suffix/panlapi and the second word is a proper noun, then they should be hyphentated.
             </message>
             <example correction="i-Tagalog" type="incorrect">Subukan mong <marker>i Tagalog</marker> ang nakasulat sa papel.</example>
-            <example correction="Nag-GCash" type="incorrect">
-                <marker>Nag GCash</marker> si Nanay sa akin ng isang daan.
-            </example>
+            <example correction="Nag-GCash" type="incorrect"><marker>Nag GCash</marker> si Nanay sa akin ng isang daan.</example>
             <example type="correct">Subukan mong <marker>i-Tagalog</marker> ang nakasulat sa papel.</example>
-            <example type="correct">
-                <marker>Nag-GCash</marker> si Nanay sa akin ng isang daan.
-            </example>
+            <example type="correct"><marker>Nag-GCash</marker> si Nanay sa akin ng isang daan.</example>
         </rule>
 
+        <rule id="ika-rule" name="ika-">
+            <pattern>
+                <token regexp="yes">(?i)ika</token>
+                <token regexp="yes">(lawa|tlo|apat|anim|pito|walo|siyam|labi[nm]|san[(daan)|(libo)]|dalawampu)</token>
+            </pattern>
+            <message> Do you mean
+                <suggestion>\1-\2</suggestion>?
+                If the first three characters contain 'ika' and is followed by a second word which is the Filipino translation of a number, then they should be concatenated instead of hyphenated.
+            </message>
+            <example correction="ika-anim" type="incorrect">Ito ang <marker>ika-anim</marker> na utos ng Panginoon.</example>
+            <example correction="ika-siyam" type="incorrect">Si Nathaniel ay naghihintay sa <marker>ika-siyam</marker> na istasyon ng LRT.</example>
+            <example type="correct">Ito ang <marker>ikaanim</marker> na utos ng Panginoon.</example>
+            <example type="correct">Si Nathaniel ay naghihintay sa <marker>ikasiyam</marker> na istasyon ng LRT.</example>
+        </rule>
     </category>
 </rules>
