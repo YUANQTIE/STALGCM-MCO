@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../print.xsl" ?>
+<?xml-stylesheet type="text/css" href="../rules.css" 
+title="Easy editing stylesheet" ?>
+<rules lang="tl" xsi:noNamespaceSchemaLocation="../rules.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<category name="Hyphenation">
+        
+        <rule id="di_hyphen" name="di-">
+            <pattern case_sensitive="no" mark_from="0">
+                <token regexp="yes">di</token>
+                <token regexp="yes">[a-z]+
+                    <exception regexp="yes">ba|po|na|ng|raw|rin|ito|ko|ako|ikaw|ka|siya|sila|kami|kayo|lahat|samin|satin|amin|atin</exception>
+                </token>
+            </pattern>
+            <message> Do you mean
+                <suggestion>\1-\2</suggestion>?
+                If the preceding word is di,
+                <match no="2" /> should be hyphentated with di.
+            </message>
+            <short>Hyphenation Change</short>
+            <example correction="di-maayos" type="incorrect">Itong relo ay <marker>di maayos</marker> ni Kuya.</example>
+            <example correction="Di-kagandahan" type="incorrect">
+                <marker>Di kagandahan</marker> ang panahon ngayon kaya hindi kami lumabas.
+            </example>
+            <example type="correct">Itong relo ay <marker>di-maayos</marker> ni Kuya.</example>
+            <example type="correct">
+                <marker>Di-kagandahan</marker> ang panahon ngayon kaya hindi kami lumabas.
+            </example>
+        </rule>
+
+        <rule id="hyphen_proper_noun" name="hypen_proper">
+            <pattern>
+                <token regexp="yes">(?i)mag|nag|pag|i|pa|naka|maka|taga</token>
+                <token regexp="yes">[A-Z][a-zA-Z]+</token>
+            </pattern>
+            <message> Do you mean
+                <suggestion>\1-\2</suggestion>?
+                If the first word is a suffix/panlapi and the second word is a proper noun, then they should be hyphentated.
+            </message>
+            <example correction="i-Tagalog" type="incorrect">Subukan mong <marker>i Tagalog</marker> ang nakasulat sa papel.</example>
+            <example correction="Nag-GCash" type="incorrect">
+                <marker>Nag GCash</marker> si Nanay sa akin ng isang daan.
+            </example>
+            <example type="correct">Subukan mong <marker>i-Tagalog</marker> ang nakasulat sa papel.</example>
+            <example type="correct">
+                <marker>Nag-GCash</marker> si Nanay sa akin ng isang daan.
+            </example>
+        </rule>
+
+    </category>
+</rules>
