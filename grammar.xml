@@ -31,7 +31,9 @@ title="Easy editing stylesheet" ?>
         <rule id="hyphen_proper_noun" name="hypen_proper">
             <pattern>
                 <token regexp="yes">(?i)mag|nag|pag|i|pa|naka|maka|taga</token>
-                <token regexp="yes">[A-Z][a-zA-Z]+</token>
+                <token regexp="yes">[A-Z][a-zA-Z]+
+                    <exception regexp ="yes">(?i)mag|nag|pag|i|pa|naka|maka|taga</exception>
+                </token>
             </pattern>
             <message> Do you mean
                 <suggestion>\1-\2</suggestion>?
@@ -45,11 +47,10 @@ title="Easy editing stylesheet" ?>
 
         <rule id="ika-rule" name="ika-">
             <pattern>
-                <token regexp="yes">(?i)ika</token>
-                <token regexp="yes">(lawa|tlo|apat|lima|anim|pito|walo|siyam|labi[nm]|san[(daan)|(libo)]|dalawampu|milyon|bilyon)</token>
+                <token regexp="yes">(?i)ika-(lawa|tlo|apat|lima|anim|pito|walo|siyam|labi[nm]|san[(daan)|(libo)]|dalawampu|milyon|bilyon)</token>
             </pattern>
             <message> Do you mean
-                <suggestion>\1\2</suggestion>?
+                <suggestion><match no="1" regexp_match="(?i)ika-(.*)" regexp_replace="ika$1" /></suggestion>?
                 If the word is meant to be an ordinal word, then the first three characters should be 'ika' and should not be hyphenated with the Filipino translation of the number.
             </message>
             <example correction="ikaanim" type="incorrect">Ito ang <marker>ika-anim</marker> na utos ng Panginoon.</example>
